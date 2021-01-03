@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 
-export default function Login() {
+
+export default function Register() {
    return (
       <>
          <div className="flex flex-row bg-gray-50 ">
@@ -26,13 +27,14 @@ export default function Login() {
                <div>
                   <img className="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
                   <h2 className="mt-6 text-center text-2xl md:text-3xl font-extrabold text-gray-900">
-                     Ingresar a mi cuenta
+                     Registrar una nueva cuenta
                   </h2>
                   <p className="mt-2 text-xs text-center text-gray-600">
-                     ¿No posee una cuenta?&nbsp;
-                     <Link href="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
+                     ¿Ya posee una cuenta?&nbsp;
+                     
+                     <Link href="/admin/login" className="font-medium text-indigo-600 hover:text-indigo-500">
                      <button className="font-medium text-indigo-600 hover:text-indigo-500">
-                     Crear una
+                     Ingresar a mi cuenta
 
                      </button>
                      </Link>
@@ -41,13 +43,22 @@ export default function Login() {
                <form className="mt-8 space-y-6" action="#" method="POST">
                   <input type="hidden" name="remember" value="true" />
                   <div className="rounded-md shadow-sm space-y-4">
+                  <div>
+                        <label htmlFor="firstname" className="sr-only">Nombre</label>
+                        <input id="firstname" name="firstname" type="text"  autoComplete="given-name" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nombre" />
+                     </div>
+                     <div>
+                        <label htmlFor="lastname" className="sr-only">Apellido</label>
+                        <input id="lastname" name="lastname" type="text" autoComplete="lastname" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Apellido" />
+                     </div>
                      <div>
                         <label htmlFor="email-address" className="sr-only">Email</label>
                         <input id="email-address" name="email" type="email" autoComplete="email" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email" />
                      </div>
+                     
                      <div>
                         <label htmlFor="password" className="sr-only">Contraseña</label>
-                        <input id="password" name="password" type="password" autoComplete="current-password" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña" />
+                        <input id="password" name="password" type="password" autoComplete="none" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña" />
                      </div>
                   </div>
 
@@ -55,16 +66,10 @@ export default function Login() {
 
                   <div>
                      <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Ingresar
+                        Registrar cuenta
                      </button>
                   </div>
-                  <div className="flex items-center justify-center">
-                     <div className="text-sm text-center">
-                        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                           ¿Olvidó su contraseña?
-                        </a>
-                     </div>
-                  </div>
+                  
                </form>
             </div>
          </div>
