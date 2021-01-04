@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 
-/* PetSchema will correspond to a collection in your MongoDB database. */
+/* Coleccion CobroSchema. */
+
 const CobroSchema = new mongoose.Schema({
   product_description: {
     /* Descripción del producto que se esta cobrando */
-
     type: String,
     required: [true, 'Ingrese una descripción que haga referencia del producto que se va a cobrar'],
   },
@@ -23,6 +23,10 @@ const CobroSchema = new mongoose.Schema({
   },
   qr_url: {
     /* Url del codigo qr generado por la api */
+    type: String,
+  },
+  email_reference: {
+    /* Referencia al email de la cuenta */
     type: String,
   },
   status: {

@@ -1,22 +1,24 @@
 import React, { useState } from 'react'
-import withPrivateRoute from '../components/withPrivateRoute';
 
 import dynamic from 'next/dynamic'
 
-const NavBar = dynamic(() => import('../components/navbar'))
-const CobrosLoyaut = dynamic(() => import('../components/admin/cobros'))
+const NavBar = dynamic(() => import('../components/Navbar'))
+const CobrosLoyaut = dynamic(() => import('../components/admin/Cobros'))
 
-const Cobros = () => {
+import myGet from '../../api/myGet'
+
+
+const Cobros = (props) => {
 
   return (
     <>
       <NavBar uri="cobros" />
-      <CobrosLoyaut />
+      <CobrosLoyaut direcciones={props.data}/>
     </>
   )
 }
 Cobros.getInitialProps = async props => {
-  return {};
+  return await myGet(`http://localhost:3000/api/direcciones/`, props);
 };
 
-export default withPrivateRoute(Cobros);
+export default Cobros;

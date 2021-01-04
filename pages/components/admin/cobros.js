@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
+import Cookies from 'js-cookie'
 
-export default function Cobros () {
+export default function Cobros (props) {
+  const { direcciones } = props
+  const [initialData, setInitialData] = useState(direcciones)
    
   let initialState = {
    product_description: '',
    crypto_coin: '',
    crypto_address: '',
    product_price: 0,
+   email_reference: Cookies.get('email')
  }
 
  const [payData, setPayData] = useState(initialState);
  const [message, setMessage] = useState('');
  const contentType = 'application/json'
- const [qr, setQr] = useState();
 
  const handleChange = (e) => {
    const { name, value } = e.target;
@@ -20,12 +23,17 @@ export default function Cobros () {
      ...payData,
      [name]: value
    });
+   if(name === 'crypto_coin') {
+
+
+     direcciones.filter(direccion => console.log(direccion.crypto_coin, payData.crypto_coin))
+   }
  }
 
  const postPay = async (e) => {
    e.preventDefault();
    try {
-     const res = await fetch('../api/cobros', {
+     const res = await fetch('/api/cobros', {
        method: 'POST',
        headers: {
          Accept: contentType,
@@ -57,7 +65,7 @@ export default function Cobros () {
                     <div class="">
                       <label htmlFor="crypto_coin" class="block text-sm font-medium text-gray-700">Selecciones cripto a usar</label>
                       <select id="crypto_coin" name="crypto_coin" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required onChange={handleChange}>
-                      <option selected="selected">Seleccione con la criptomoneda que va a cobrar</option>
+                      <option selected="selected" value="default">Seleccione con la criptomoneda que va a cobrar</option>
                         <option value="Bitcoin">Bitcoin</option>
                         <option value="Litecoin">Litecoin</option>
                         <option value="Dash coin">Dash coin</option>
@@ -68,9 +76,11 @@ export default function Cobros () {
                       <label htmlFor="crypto_address" class="block text-sm font-medium text-gray-700">Selecciones direccion de billetera (Wallet Address)</label>
                       <select id="crypto_address" name="crypto_address" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  required onChange={handleChange}>
                         <option selected="selected">Seleccione dirección asociada a la criptomoneda seleccionada</option>
-                        <option>1J19TLLqu8DH2cv3ze7g1xZNwyyXWyGLKc</option>
-                        <option>1J19TLLqu8DH2cv3ze7g1xZNwyyXWyG123123</option>
-                        <option>1J19TLLqu8DH2cv3ze7g1xZNwyyXWyasdf23</option>
+                        {
+                          direcciones.map(address =>
+                            <option>{address.crypto_address} (Ref: {address.crypto_reference})</option>
+                          )
+                        }
                       </select>
                     </div>
 

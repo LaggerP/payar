@@ -1,9 +1,8 @@
 import mongoose from 'mongoose'
 
-/* PetSchema will correspond to a collection in your MongoDB database. */
+/* Coleccion AccountSchema. */
 const AccountSchema = new mongoose.Schema({
   firstname: {
-
     type: String,
     required: [true, 'Ingrese su nombre'],
   },
@@ -15,7 +14,7 @@ const AccountSchema = new mongoose.Schema({
     type: String,
   },
   password: {
-    type: String, // este valor se tiene que encriptar mediante hash
+    type: String,
   },
 })
 
