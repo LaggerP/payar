@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Router from 'next/router'
 
+
 export default function Register() {
 
    let initialAccountState = {
@@ -18,37 +19,37 @@ export default function Register() {
    const handleChange = (e) => {
       const { name, value } = e.target;
       setAccountData({
-        ...accountData,
-        [name]: value
+         ...accountData,
+         [name]: value
       });
-    }
+   }
 
    const register = async (e) => {
       e.preventDefault();
       try {
-        const res = await fetch('./api/auth/register', {
-          method: 'POST',
-          headers: {
-            Accept: contentType,
-            'Content-Type': contentType,
-          },
-          body: JSON.stringify(accountData),
-        })
-        if (!res.ok) {
-          throw new Error(res.status)
-        } else {
-         Router.push('/admin/login');
-        }
+         const res = await fetch('./api/auth/register', {
+            method: 'POST',
+            headers: {
+               Accept: contentType,
+               'Content-Type': contentType,
+            },
+            body: JSON.stringify(accountData),
+         })
+         if (!res.ok) {
+            throw new Error(res.status)
+         } else {
+            Router.push('/admin/login');
+         }
       } catch (error) {
-        setMessage('Fallo al crear una nueva cuenta')
+         setMessage('Fallo al crear una nueva cuenta')
       }
    }
 
 
    return (
       <>
-         <div className="flex flex-row bg-gray-50 ">
-            <div className="hidden md:block md:w-3/5 h-screen bg-gradient-to-t from-indigo-500 via-indigo-600 to-indigo-700 ">
+         <div className="flex flex-row bg-gray-50 videoBackground">
+            <div className="hidden md:block md:w-3/5 h-screen bg-gradient-to-t from-indigo-500 via-indigo-700 to-indigo-800 ">
                <div className="flex justify-center items-center h-full text-white text-2xl">
                   <ul className="">
                      <li className="my-5 flex items-center">
@@ -74,7 +75,7 @@ export default function Register() {
                      ¿Ya posee una cuenta?&nbsp;
                      <Link href="/admin/login" className="font-medium text-indigo-600 hover:text-indigo-500">
                         <button className="font-medium text-indigo-600 hover:text-indigo-500">
-                        Ingresar a mi cuenta
+                           Ingresar a mi cuenta
                         </button>
                      </Link>
                   </p>
@@ -82,22 +83,22 @@ export default function Register() {
                <form className="mt-8 space-y-6" onSubmit={register} method="POST">
                   <input type="hidden" name="remember" value="true" />
                   <div className="rounded-md shadow-sm space-y-4">
-                  <div>
+                     <div>
                         <label htmlFor="firstname" className="sr-only">Nombre</label>
-                        <input id="firstname" name="firstname" type="text"  autoComplete="given-name" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nombre" onChange={handleChange}/>
+                        <input id="firstname" name="firstname" type="text" autoComplete="given-name" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nombre" onChange={handleChange} />
                      </div>
                      <div>
                         <label htmlFor="lastname" className="sr-only">Apellido</label>
-                        <input id="lastname" name="lastname" type="text" autocomplete="family-name" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Apellido" onChange={handleChange}/>
+                        <input id="lastname" name="lastname" type="text" autocomplete="family-name" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Apellido" onChange={handleChange} />
                      </div>
                      <div>
                         <label htmlFor="email-address" className="sr-only">Email</label>
-                        <input id="email-address" name="email" type="email" autoComplete="email" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email" onChange={handleChange}/>
+                        <input id="email-address" name="email" type="email" autoComplete="email" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email" onChange={handleChange} />
                      </div>
-                     
+
                      <div>
                         <label htmlFor="password" className="sr-only">Contraseña</label>
-                        <input id="password" name="password" type="password" autoComplete="none" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña" onChange={handleChange}/>
+                        <input id="password" name="password" type="password" autoComplete="none" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña" onChange={handleChange} />
                      </div>
                   </div>
 

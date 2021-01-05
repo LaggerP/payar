@@ -17,7 +17,6 @@ export default middlewares(async function handler(req, res) {
       break
     case 'POST':
       const { product_description, crypto_coin, crypto_address, product_price } = req.body
-      console.log(req.body)
 
       const qrUri = `https://chart.googleapis.com/chart?chs=225x225&chld=L|2&cht=qr&chl=${crypto_coin}:${crypto_address}?amount=${product_price}%26`;
 
@@ -31,6 +30,15 @@ export default middlewares(async function handler(req, res) {
         res.status(400).json({ success: false })
       }
       break
+      case 'UPDATE':
+        try {
+          const cobro = await Cobro.findByIdAndUpdate(req.body, {status: true}, { new: true })
+          console.log(cobro)
+          res.status(201).json({ success: true, data: cobro })
+        } catch (error) {
+          res.status(400).json({ success: false })
+        }
+        break
     default:
       res.status(400).json({ success: false })
       break
