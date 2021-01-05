@@ -19,7 +19,7 @@ const CobroSchema = new mongoose.Schema({
   },
   product_price: {
     /* Precio del producto que se esta cobrando */
-    type: String, // este valor se tiene que pasar a float con parseFloat()
+    type: Number 
   },
   qr_url: {
     /* Url del codigo qr generado por la api */
@@ -28,6 +28,10 @@ const CobroSchema = new mongoose.Schema({
   email_reference: {
     /* Referencia al email de la cuenta */
     type: String,
+  },
+  transaction_status: {
+    /* Referencia al estado de la transferencia */
+    type: Boolean,
   },
   status: {
     /* Estado de la transacción */

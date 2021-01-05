@@ -5,11 +5,12 @@ import myGet from '../../api/myGet'
 
 const NavBar = dynamic(() => import('../components/Navbar'))
 const TableSales = dynamic(() => import('../components/TableSales'))
-
+const CardCryptoInfo = dynamic(()=> import('../components/CardCryptoInfo'))
 const Dashboard = (props) => {
    const [cobros, setCobros] = useState(props.data)
    const [loading, setLoading] = useState(false)
-
+   
+  
    if (!loading) {
       return (
          <>
@@ -25,6 +26,9 @@ const Dashboard = (props) => {
                   </button>
                   </Link>
                </div>
+<CardCryptoInfo coin="btc"/>
+<CardCryptoInfo coin="btc"/>
+
                <div class="flex flex-col">
                   <h3 className="text-xl mb-4 md:ml-1">Últimas transacciones:</h3>
                   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -97,7 +101,7 @@ const Dashboard = (props) => {
 }
 
 Dashboard.getInitialProps = async props => {
-   return await myGet(`http://localhost:3000/api/cobros/`, props);
+   return await myGet(`http://localhost:3000/api/cobros`, props);
 };
 
 export default Dashboard;

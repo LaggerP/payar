@@ -9,7 +9,7 @@ export default function Navbar(props) {
   const logout = () => {
     Cookie.remove('email');
     Cookie.remove('authToken');
-    Router.push('/admin/login');
+    Router.push('/');
   }
 
   return (
@@ -46,18 +46,6 @@ export default function Navbar(props) {
                     <path d="M11 4a1 1 0 10-2 0v1a1 1 0 002 0V4zM10 7a1 1 0 011 1v1h2a1 1 0 110 2h-3a1 1 0 01-1-1V8a1 1 0 011-1zM16 9a1 1 0 100 2 1 1 0 000-2zM9 13a1 1 0 011-1h1a1 1 0 110 2v2a1 1 0 11-2 0v-3zM7 11a1 1 0 100-2H4a1 1 0 100 2h3zM17 13a1 1 0 01-1 1h-2a1 1 0 110-2h2a1 1 0 011 1zM16 17a1 1 0 100-2h-3a1 1 0 100 2h3z" />
                   </svg>
                   Nuevo cobro
-                </button>
-              </Link>
-
-              <Link href="/admin/dashboard" passHref>
-                <button className={props.uri == 'componente1' ? 'bg-white text-black px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium focus:outline-none'}>
-                  Componente
-                </button>
-              </Link>
-
-              <Link href="/admin/dashboard" passHref>
-                <button className={props.uri == 'componente2' ? 'bg-white text-black px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium focus:outline-none'}>
-                  Componente
                 </button>
               </Link>
 
