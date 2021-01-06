@@ -48,7 +48,7 @@ export default function Register() {
 
    return (
       <>
-         <div className="flex flex-row bg-gray-50 videoBackground">
+         <div className="flex flex-row bg-gray-50">
             <div className="hidden md:block md:w-3/5 h-screen bg-gradient-to-t from-indigo-500 via-indigo-700 to-indigo-800 ">
                <div className="flex justify-center items-center h-full text-white text-2xl">
                   <ul className="">
@@ -74,7 +74,7 @@ export default function Register() {
                   <p className="mt-2 text-xs text-center text-gray-600">
                      ¿Ya posee una cuenta?&nbsp;
                      <Link href="/admin/login" className="font-medium text-indigo-600 hover:text-indigo-500">
-                        <button className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <button className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none">
                            Ingresar a mi cuenta
                         </button>
                      </Link>
@@ -103,7 +103,7 @@ export default function Register() {
                   </div>
 
                   <div>
-                     <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                     <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ">
                         Registrar cuenta
                      </button>
                   </div>

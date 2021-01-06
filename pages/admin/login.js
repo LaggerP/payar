@@ -73,7 +73,7 @@ export default function Login() {
                   <p className="mt-2 text-xs text-center text-gray-600">
                      ¿No posee una cuenta?&nbsp;
                      <Link href="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
-                        <button className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <button className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none">
                            Crear una
                      </button>
                      </Link>
