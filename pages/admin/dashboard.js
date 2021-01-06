@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import myGet from '../../api/myGet'
 
-const NavBar = dynamic(() => import('../components/Navbar'))
-const TableSales = dynamic(() => import('../components/TableSales'))
-const CardCryptoInfo = dynamic(()=> import('../components/CardCryptoInfo'))
+import Navbar from '../components/Navbar'
+import TableSales from '../components/TableSales'
+
 const Dashboard = (props) => {
    const [cobros, setCobros] = useState(props.data)
    const [loading, setLoading] = useState(false)
@@ -14,7 +13,7 @@ const Dashboard = (props) => {
    if (!loading) {
       return (
          <>
-            <NavBar uri="dashboard" />
+            <Navbar uri="dashboard" />
             <div className="container mx-auto my-10 md:my-20">
                <div className="flex justify-center my-10">
                   <Link href="/admin/cobros">
@@ -26,8 +25,6 @@ const Dashboard = (props) => {
                   </button>
                   </Link>
                </div>
-<CardCryptoInfo coin="btc"/>
-<CardCryptoInfo coin="btc"/>
 
                <div class="flex flex-col">
                   <h3 className="text-xl mb-4 md:ml-1">Últimas transacciones:</h3>

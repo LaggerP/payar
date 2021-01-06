@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import dynamic from 'next/dynamic'
-const NavBar = dynamic(() => import('../components/Navbar'))
+
+import Navbar from '../components/Navbar'
 import myGet from '../../api/myGet'
 import Cookies from 'js-cookie'
 
@@ -52,7 +52,7 @@ const { data } = props
 
   return (
     <>
-      <NavBar uri="cobros" />
+      <Navbar uri="cobros" />
       <div className="container mx-auto">
       <div className="mt-10">
         <div className="mt-5 md:mt-0 md:col-span-2">
