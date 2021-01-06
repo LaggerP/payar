@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
+import React, { useState } from 'react';
+import Link from 'next/link';
 import Router from 'next/router'
-import Cookie from 'js-cookie'
 
-export default function Login() {
+
+export default function Register() {
 
    let initialAccountState = {
+      firstname: '',
+      lastname: '',
       email: '',
       password: ''
    }
@@ -20,15 +22,12 @@ export default function Login() {
          ...accountData,
          [name]: value
       });
-      if (name === 'email') {
-         Cookie.set("email", value)
-      }
    }
 
-   const login = async (e) => {
+   const register = async (e) => {
       e.preventDefault();
       try {
-         const res = await fetch('/api/auth/login', {
+         const res = await fetch('./api/auth/register', {
             method: 'POST',
             headers: {
                Accept: contentType,
@@ -39,16 +38,17 @@ export default function Login() {
          if (!res.ok) {
             throw new Error(res.status)
          } else {
-            Router.push('/admin/dashboard');
+            Router.push('/admin/login');
          }
       } catch (error) {
          setMessage('Fallo al crear una nueva cuenta')
       }
    }
 
+
    return (
       <>
-         <div className="flex flex-row bg-gray-50 ">
+         <div className="flex flex-row bg-gray-50">
             <div className="hidden md:block md:w-3/5 h-screen bg-gradient-to-t from-indigo-500 via-indigo-700 to-indigo-800 ">
                <div className="flex justify-center items-center h-full text-white text-2xl">
                   <ul className="">
@@ -64,44 +64,48 @@ export default function Login() {
                         Genere códigos QR</li>
                   </ul>
                </div>
+
             </div>
             <div className="flex flex-col justify-center w-full h-screen md:w-2/5 px-10 md:px-24">
                <div>
                   <h2 className="mt-6 text-center text-2xl md:text-3xl font-extrabold text-gray-900">
-                     Ingresar a mi cuenta
+                     Registrar una nueva cuenta
                   </h2>
                   <p className="mt-2 text-xs text-center text-gray-600">
-                     ¿No posee una cuenta?&nbsp;
-                     <Link href="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
+                     ¿Ya posee una cuenta?&nbsp;
+                     <Link href="/admin/login" className="font-medium text-indigo-600 hover:text-indigo-500">
                         <button className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none">
-                           Crear una
-                     </button>
+                           Ingresar a mi cuenta
+                        </button>
                      </Link>
                   </p>
                </div>
-               <form className="mt-8 space-y-6" onSubmit={login} method="POST">
+               <form className="mt-8 space-y-6" onSubmit={register} method="POST">
                   <input type="hidden" name="remember" value="true" />
                   <div className="rounded-md shadow-sm space-y-4">
                      <div>
-                        <label htmlFor="email-address" className="sr-only">Email</label>
-                        <input id="email-address" name="email" type="email" autoComplete="email" required className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email" onChange={handleChange} />
+                        <label htmlFor="firstname" className="sr-only">Nombre</label>
+                        <input id="firstname" name="firstname" type="text" autoComplete="given-name" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nombre" onChange={handleChange} />
                      </div>
                      <div>
+                        <label htmlFor="lastname" className="sr-only">Apellido</label>
+                        <input id="lastname" name="lastname" type="text" autocomplete="family-name" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Apellido" onChange={handleChange} />
+                     </div>
+                     <div>
+                        <label htmlFor="email-address" className="sr-only">Email</label>
+                        <input id="email-address" name="email" type="email" autoComplete="email" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email" onChange={handleChange} />
+                     </div>
+
+                     <div>
                         <label htmlFor="password" className="sr-only">Contraseña</label>
-                        <input id="password" name="password" type="password" autoComplete="current-password" required className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña" onChange={handleChange} />
+                        <input id="password" name="password" type="password" autoComplete="none" required className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña" onChange={handleChange} />
                      </div>
                   </div>
+
                   <div>
-                     <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Ingresar
+                     <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ">
+                        Registrar cuenta
                      </button>
-                  </div>
-                  <div className="flex items-center justify-center">
-                     <div className="text-sm text-center">
-                        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                           ¿Olvidó su contraseña?
-                        </a>
-                     </div>
                   </div>
                </form>
             </div>
