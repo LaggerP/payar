@@ -11,7 +11,10 @@ export default function Login() {
    }
 
    const [accountData, setAccountData] = useState(initialAccountState);
+   const [wrongCredentials, setWrongCredentials] = useState(false);
+   const [loading, setLoading] = useState(false);
    const [message, setMessage] = useState('');
+
    const contentType = 'application/json'
 
    const handleChange = (e) => {
@@ -26,6 +29,7 @@ export default function Login() {
    }
 
    const login = async (e) => {
+      setLoading(true)
       e.preventDefault();
       try {
          const res = await fetch('/api/auth/login', {
@@ -37,6 +41,9 @@ export default function Login() {
             body: JSON.stringify(accountData),
          })
          if (!res.ok) {
+            setWrongCredentials(true)
+            setLoading(false)
+            document.getElementById('loginForm').reset();
             throw new Error(res.status)
          } else {
             Router.push('/admin/dashboard');
@@ -79,7 +86,7 @@ export default function Login() {
                      </Link>
                   </p>
                </div>
-               <form className="mt-8 space-y-6" onSubmit={login} method="POST">
+               <form id="loginForm" className="mt-8 space-y-6" onSubmit={login} method="POST">
                   <input type="hidden" name="remember" value="true" />
                   <div className="rounded-md shadow-sm space-y-4">
                      <div>
@@ -90,11 +97,19 @@ export default function Login() {
                         <label htmlFor="password" className="sr-only">Contraseña</label>
                         <input id="password" name="password" type="password" autoComplete="current-password" required className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña" onChange={handleChange} />
                      </div>
+
+                  </div>
+                  <div className="text-center text-xs text-red-500 font-medium">
+                     {
+                        wrongCredentials ? <span>Puede que sus credenciales no sean las correctas.</span> : null
+                     }
                   </div>
                   <div>
                      <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Ingresar
+                        {!loading ? 'Ingresar' : 'Cargando...'}
+
                      </button>
+
                   </div>
                   <div className="flex items-center justify-center">
                      <div className="text-sm text-center">

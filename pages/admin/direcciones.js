@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import dynamic from 'next/dynamic'
 import myGet from '../../api/myGet'
 
-const NavBar = dynamic(() => import('../components/Navbar'))
-const CardCryptoAddress = dynamic(() => import('../components/CardCryptoAddress'))
-const FormNewAddress = dynamic(() => import('../components/FormNewAddress'))
+import Navbar from '../components/Navbar'
+import CardCryptoAddress from '../components/CardCryptoAddress'
+import FormNewAddress from '../components/FormNewAddress'
 
 const Direcciones = (props) => {
 
@@ -12,7 +11,7 @@ const Direcciones = (props) => {
 
   return (
     <>
-      <NavBar uri="direcciones" />
+      <Navbar uri="direcciones" />
       <div class="container mx-auto">
         <div class="mt-10">
           <h3 className="text-xl mb-4 ml-2 md:ml-1">Direcciones actuales:</h3>
