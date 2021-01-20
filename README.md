@@ -2,8 +2,8 @@
 
 PAYAR es una plataforma web que te permite crear y registrar cobros realizados a través de criptomonedas. La misma plataforma nace de la necesidad (personal) y curiosidad de aprender una nueva tecnología, en este caso **NextJS**, **Tailwind** y las **criptomonedas**. 
 
-**¿Por qué criptomonedas?** Simple, la pandemia hizo que la adopción de las mismas se aceleren muchísimo. Personas que nunca se animaron a ingresar a este mundo, lo hicieron y hasta entendieron el poder que estas tienen.
-**¿Por qué una plataforma que te permite registrar cobros a través de criptos?** Si bien existen plataformas que ya tienen estas funcionalidades, no encontré ningun ejemplo ni código abierto al público. Es por eso que aproveché mis vacaciones universitarias para codificar PAYAR y dejar el código libre por si alguien quiere mejorarlo para que la plataforma siga creciendo.
+ - **¿Por qué criptomonedas?** Simple, la pandemia hizo que la adopción de las mismas se aceleren muchísimo. Personas que nunca se animaron a ingresar a este mundo, lo hicieron y hasta entendieron el poder que estas tienen.
+ - **¿Por qué una plataforma que te permite registrar cobros a través de criptos?** Si bien existen plataformas que ya tienen estas funcionalidades, no encontré ningun ejemplo ni código abierto al público. Es por eso que aproveché mis vacaciones universitarias para codificar PAYAR y dejar el código libre por si alguien quiere mejorarlo para que la plataforma siga creciendo.
 
 **PD**: El código de esta plataforma puede que no sea el mejor (ni el peor), eso no quita que aprendí muchísimo de NextJS y Tailwind. Creo que ahora me siento preparado para implementarlas en el futuro y seguir perfeccionando el entendimiento de estas, además de agregarlo a mi lista de tecnologías con las que me gustaría trabajar (Recruiters... 📧😉).
 
