@@ -12,8 +12,7 @@ const cryptoIcon = (crypto) => {
    else if (crypto === 'Dash coin')
       return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/dash.svg"></img>
 }
-
-const TableSales =  (props) => {
+export default function TableSales (props) {
    const [message, setMessage] = useState('');
    const contentType = 'application/json'
 
@@ -138,5 +137,3 @@ const TableSales =  (props) => {
       </tr>
    )
 }
-
-export default TableSales;
