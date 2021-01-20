@@ -45,5 +45,4 @@ const CardCryptoAddress = (props) => {
       </div>
    )
 }
-
-export default CardCryptoAddress
+export default CardCryptoAddress;

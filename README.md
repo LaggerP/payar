@@ -1,34 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PAYAR
 
-## Getting Started
+PAYAR es una plataforma web que te permite crear y registrar cobros realizados a través de criptomonedas. La misma plataforma nace de la necesidad (personal) y curiosidad de aprender una nueva tecnología, en este caso **NextJS**, **Tailwind** y las **criptomonedas**. 
 
-First, run the development server:
+**¿Por qué criptomonedas?** Simple, la pandemia hizo que la adopción de las mismas se aceleren muchísimo. Personas que nunca se animaron a ingresar a este mundo, lo hicieron y hasta entendieron el poder que estas tienen.
+**¿Por qué una plataforma que te permite registrar cobros a través de criptos?** Si bien existen plataformas que ya tienen estas funcionalidades, no encontré ningun ejemplo ni código abierto al público. Es por eso que aproveché mis vacaciones universitarias para codificar PAYAR y dejar el código libre por si alguien quiere mejorarlo para que la plataforma siga creciendo.
 
-```bash
-npm run dev
-# or
-yarn dev
+**PD**: El código de esta plataforma puede que no sea el mejor (ni el peor), eso no quita que aprendí muchísimo de NextJS y Tailwind. Creo que ahora me siento preparado para implementarlas en el futuro y seguir perfeccionando el entendimiento de estas, además de agregarlo a mi lista de tecnologías con las que me gustaría trabajar (Recruiters... 📧😉).
+
+### Funcionalidades (algunas en desarrollo)
+
+  - Generación de códigos QR personalizados según monto.
+  - Registro de cobros realizados.
+  - Biblioteca de cripto direcciones (aloje sus direcciones para un mejor manejo de la plataforma).
+  - Confirmación de cobros: la plataforma le permite confirmar si un cobro se hizo o no.
+
+### Próximas mejoras: (si el tiempo lo permite)
+
+  - Generar PDF con las transacciones realizadas. La misma dispondrá de filtros para generar el PDF.
+  - Poder hacer deploy de **PAYAR** en Vercel. 
+  - Ver precios de criptomonedas en tiempo real.
+  - Mandar emails de: reportes, cobros confirmados, etc.
+  - Migrar el código a TypeScript.
+  - Y muchas más (esto es interminable).
+
+### Tecnologías
+
+* NextJS
+* Tailwind CSS
+* MongoDB
+
+### Cómo correr el proyecto en forma local:
+
+Crear un archivo de variables de entorno local (`.env.local`) en la carpeta raíz: 
+```sh
+MONGODB_URI= tuDireccionMongoDB
+JWT_SECRET= tuSuperClaveSecreta
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Con NPM
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```sh
+$ npm install 
+$ npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Con Yarn
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```sh
+$ yarn install 
+$ yarn dev
+```
 
-## Learn More
+### Roadmap y desarrollo
 
-To learn more about Next.js, take a look at the following resources:
+Si bien es una plataforma que nació por querer buscar algo que aprender, creo que pueden agregarse más features y mejorar implementaciones actuales. Si te gustaría contribuir con este proyecto, más que bienvenida tu iniciativa. También son bienvenidas las propuestas de mejoras. Los **Issues** y **PRs** están listos para ser bombardeados.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Licencia
+----
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+¿Licencia? la única que conozco es licencia por maternidad y paternidad (por ahora). Código 100% libre.
