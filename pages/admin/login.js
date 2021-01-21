@@ -56,7 +56,7 @@ export default function Login() {
    return (
       <>
          <div className="flex flex-row bg-gray-50 ">
-            <div className="hidden md:block md:w-3/5 h-screen bg-gradient-to-t from-indigo-500 via-indigo-700 to-indigo-800 ">
+            <div className="hidden md:block md:w-3/5 h-screen bg-gradient-to-t from-indigo-500 via-indigo-700 to-indigo-800">
                <div className="flex justify-center items-center h-full text-white text-2xl">
                   <ul className="">
                      <li className="my-5 flex items-center">
