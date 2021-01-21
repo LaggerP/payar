@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Cookie from 'js-cookie'
 import Router from 'next/router'
 
-const CardCryptoInfo = (props) => {
+export default function CardCryptoInfo (props) {
    const [cryptoInfo, setCryptoInfo] = useState([])
 
    const getLastestCryptoInfo = async () => {
@@ -23,5 +23,3 @@ const CardCryptoInfo = (props) => {
       )
    
 }
-
-export default CardCryptoInfo
