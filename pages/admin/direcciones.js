@@ -12,8 +12,8 @@ const Direcciones = (props) => {
   return (
     <>
       <Navbar uri="direcciones" />
-      <div class="container mx-auto">
-        <div class="mt-10">
+      <div className="container mx-auto">
+        <div className="mt-10">
           <h3 className="text-xl mb-4 ml-2 md:ml-1">Direcciones actuales:</h3>
           <div className="flex flex-wrap ">
             {
@@ -33,7 +33,9 @@ const Direcciones = (props) => {
 }
 
 Direcciones.getInitialProps = async props => {
-  return await myGet(`http://localhost:3000/api/direcciones/`, props);
+  const url = process.env.NODE_ENV === 'production' ? 'https://payar.vercel.app/api/direcciones/'  : 'http://localhost:3000/api/direcciones/'
+
+  return await myGet(url, props);
 };
 
 export default Direcciones
