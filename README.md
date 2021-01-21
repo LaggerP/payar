@@ -7,6 +7,8 @@ PAYAR es una plataforma web que te permite crear y registrar cobros realizados a
 
 **PD**: El código de esta plataforma puede que no sea el mejor (ni el peor), eso no quita que aprendí muchísimo de NextJS y Tailwind. Creo que ahora me siento preparado para implementarlas en el futuro y seguir perfeccionando el entendimiento de estas, además de agregarlo a mi lista de tecnologías con las que me gustaría trabajar (Recruiters... 📧😉).
 
+**PD2**: El código es inestable y la seguridad del mismo no esta asegurada. La generación de los códigos QR es través de la API de Google pero no aseguro que la misma sea confiable al 100%. Recuerde que es un proyecto 100% realizado para aprender nuevas tecnologías.
+
 ### Funcionalidades (algunas en desarrollo)
 
   - Generación de códigos QR personalizados según monto.

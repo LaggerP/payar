@@ -115,7 +115,8 @@ const { data } = props
 }
 
 Cobros.getInitialProps = async props => {
-  return await myGet(`http://localhost:3000/api/direcciones/`, props);
+  const url = process.env.NODE_ENV === 'production' ? 'https://payar.vercel.app/api/direcciones/'  : 'http://localhost:3000/api/direcciones/'
+  return await myGet(url, props);
 };
 
 export default Cobros;
