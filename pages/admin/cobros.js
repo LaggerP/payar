@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-
+import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import myGet from '../../api/myGet'
 import Cookies from 'js-cookie'
+
 
 
 const Cobros = (props) => {
@@ -52,6 +53,9 @@ const { data } = props
 
   return (
     <>
+      <Head>
+        <title>Cobros - Payar</title>
+      </Head>
       <Navbar uri="cobros" />
       <div className="container mx-auto">
       <div className="mt-10">

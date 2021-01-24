@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import myGet from '../../api/myGet'
 
 import Navbar from '../components/Navbar'
@@ -8,12 +9,15 @@ import TableSales from '../components/TableSales'
 const Dashboard = (props) => {
    const [cobros, setCobros] = useState(props.data)
    const [loading, setLoading] = useState(false)
-   
-  
+
    if (!loading) {
       return (
          <>
+            <Head>
+               <title>Dashboard - Payar</title>
+            </Head>
             <Navbar uri="dashboard" />
+
             <div className="container mx-auto my-10 md:my-20">
                <div className="flex justify-center my-10">
                   <Link href="/admin/cobros">
@@ -98,7 +102,7 @@ const Dashboard = (props) => {
 }
 
 Dashboard.getInitialProps = async props => {
-   const url = process.env.NODE_ENV === 'production' ? 'https://payar.vercel.app/api/cobros'  : 'http://localhost:3000/api/cobros'
+   const url = process.env.NODE_ENV === 'production' ? 'https://payar.vercel.app/api/cobros' : 'http://localhost:3000/api/cobros'
    return await myGet(url, props);
 };
 

@@ -1,6 +1,25 @@
 import Router from 'next/router'
+import { useState } from 'react'
+
+const cryptoIcon = (crypto) => {
+   switch (crypto) {
+      case 'Bitcoin':
+         return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/btc.svg"></img>
+      case 'Litecoin':
+         return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/ltc.svg"></img>
+      case 'Ethereum':
+         return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg"></img>
+      case 'Dash coin':
+         return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/dash.svg"></img>
+      default:
+         break;
+   }
+}
+
 
 const CardCryptoAddress = (props) => {
+   const [message, setMessage] = useState('')
+   console.log(props.data.crypto_coin)
 
    const deleteAddress = async (objId) => {
       try {
@@ -14,20 +33,22 @@ const CardCryptoAddress = (props) => {
          })
          if (!res.ok) {
             throw new Error(res.status)
+         } else {
+            Router.reload('admin/direcciones')
+
          }
       } catch (error) {
          setMessage('Fallo al crear un nuevo cobro')
       }
-      Router.reload('admin/direcciones')
    }
-   if(props.data !== undefined) {
+   if (props.data !== undefined) {
       return (
          <div className="w-full lg:w-1/5 m-2">
             <div className="widget w-full p-4 rounded-lg bg-white border border-gray-300 dark:bg-gray-900 dark:border-gray-800">
                <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-col">
-                     <div className="text-sm uppercase font-medium text-black">
-                        {props.data.crypto_coin} - <span className="text-xs text-gray-500">{props.data.crypto_reference}</span>
+                     <div className="flex flex-row items-center text-center text-sm uppercase font-medium text-black">
+                        <span>{cryptoIcon(props.data.crypto_coin)}</span> - <span className="text-xs text-gray-500">{props.data.crypto_reference}</span>
                      </div>
                      <div className="text-sm font-medium text-black">
                         <span className="text-xs text-gray-500">Dirección: {props.data.crypto_address}</span>
@@ -46,6 +67,6 @@ const CardCryptoAddress = (props) => {
    } else {
       return null
    }
-  
+
 }
 export default CardCryptoAddress;

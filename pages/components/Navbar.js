@@ -17,13 +17,13 @@ export default function Navbar(props) {
       <nav className="bg-indigo-500">
         <div className="flex items-center p-4 pl-0">
           <div className="flex-shrink-0">
-            <img className="ml-5 h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow" />
+            <img className="ml-5 h-12 w-12" src="../icon.png" alt="Payar icon" />
           </div>
           <div className="w-screen hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
 
               <Link href="/admin/dashboard" passHref>
-                <button className={props.uri == 'dashboard' ? 'bg-white text-black px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium focus:outline-none'}>
+                <button className={props.uri == 'dashboard' ? 'bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-100 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none'}>
                   <svg className="h-8 w-8 inline-flex pr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z" clip-rule="evenodd" />
                   </svg>Dashboard
@@ -31,8 +31,7 @@ export default function Navbar(props) {
               </Link>
 
               <Link href="/admin/direcciones" passHref>
-
-                <button className={props.uri == 'direcciones' ? 'bg-white text-black px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium focus:outline-none'}>
+                <button className={props.uri == 'direcciones' ? 'bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-100 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none'}>
                   <svg className="h-8 w-8 inline-flex pr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                   </svg>Mis direcciones
@@ -40,7 +39,7 @@ export default function Navbar(props) {
               </Link>
 
               <Link href="/admin/cobros" passHref>
-                <button className={props.uri == 'cobros' ? 'bg-white text-black px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2 rounded-md text-sm font-medium focus:outline-none'}>
+                <button className={props.uri == 'cobros' ? 'bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-100 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none'}>
                   <svg className="h-8 w-8 inline-flex pr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M3 4a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2V5h1v1H5zM3 13a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3zm2 2v-1h1v1H5zM13 3a1 1 0 00-1 1v3a1 1 0 001 1h3a1 1 0 001-1V4a1 1 0 00-1-1h-3zm1 2v1h1V5h-1z" clip-rule="evenodd" />
                     <path d="M11 4a1 1 0 10-2 0v1a1 1 0 002 0V4zM10 7a1 1 0 011 1v1h2a1 1 0 110 2h-3a1 1 0 01-1-1V8a1 1 0 011-1zM16 9a1 1 0 100 2 1 1 0 000-2zM9 13a1 1 0 011-1h1a1 1 0 110 2v2a1 1 0 11-2 0v-3zM7 11a1 1 0 100-2H4a1 1 0 100 2h3zM17 13a1 1 0 01-1 1h-2a1 1 0 110-2h2a1 1 0 011 1zM16 17a1 1 0 100-2h-3a1 1 0 100 2h3z" />
@@ -49,7 +48,14 @@ export default function Navbar(props) {
                 </button>
               </Link>
 
-              <button onClick={logout} className='bg-white hover:bg-red-500 text-black hover:text-white px-3 py-2 rounded-md text-sm font-medium'>
+              <Link href="/admin/productos" passHref>
+                <button className={props.uri == 'productos' ? 'bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-100 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none'}>
+                  <svg class="h-8 w-8 inline-flex pr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                  Productos
+                </button>
+              </Link>
+
+              <button onClick={logout} className='hover:bg-red-400 text-white px-3 py-2 rounded-md text-sm font-medium'>
                 <svg className="h-8 w-8 inline-flex pr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                   Salir
                 </button>
@@ -77,34 +83,31 @@ export default function Navbar(props) {
           <div className="flex flex-col">
 
             <Link href="/admin/dashboard" passHref>
-              <button className={props.uri == 'dashboard' ? 'bg-white text-black px-3 py-2  text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2  text-sm font-medium focus:outline-none'}>
+              <button className={props.uri == 'dashboard' ? 'bg-indigo-600 text-white px-3 py-2  text-sm font-medium' : 'text-gray-100 hover:bg-indigo-400 hover:text-white px-3 py-2 text-sm font-medium focus:outline-none'}>
                 Dashboard
               </button>
             </Link>
 
             <Link href="/admin/direcciones" passHref>
-              <button className={props.uri == 'direcciones' ? 'bg-white text-black px-3 py-2  text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2  text-sm font-medium focus:outline-none'}>
+              <button className={props.uri == 'direcciones' ? 'bg-indigo-600 text-white px-3 py-2  text-sm font-medium' : 'text-gray-100 hover:bg-indigo-400 hover:text-white px-3 py-2 text-sm font-medium focus:outline-none'}>
                 Mis direcciones
               </button>
             </Link>
 
             <Link href="/admin/cobros" passHref>
-              <button className={props.uri == 'cobros' ? 'bg-white text-black px-3 py-2  text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2  text-sm font-medium focus:outline-none'}>
+              <button className={props.uri == 'cobros' ? 'bg-indigo-600 text-white px-3 py-2  text-sm font-medium' : 'text-gray-100 hover:bg-indigo-400 hover:text-white px-3 py-2 text-sm font-medium focus:outline-none'}>
                 Nuevo cobros
               </button>
             </Link>
-
-            <Link href="/admin/dashboard" passHref>
-              <button className={props.uri == 'componente1' ? 'bg-white text-black px-3 py-2  text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2  text-sm font-medium focus:outline-none'}>
-                Componente
+            <Link href="/admin/productos" passHref>
+              <button className={props.uri == 'productos' ? 'bg-indigo-600 text-white px-3 py-2  text-sm font-medium' : 'text-gray-100 hover:bg-indigo-400 hover:text-white px-3 py-2 text-sm font-medium focus:outline-none'}>
+                Productos
               </button>
             </Link>
-
-            <Link href="/admin/dashboard" passHref>
-              <button className={props.uri == 'componente2' ? 'bg-white text-black px-3 py-2  text-sm font-medium' : 'text-gray-100 hover:bg-white hover:text-black px-3 py-2  text-sm font-medium focus:outline-none'}>
-                Componente
-              </button>
-            </Link>
+            <button onClick={logout} className='bg-indigo-500 hover:bg-red-400 text-white hover:text-black px-3 py-2 text-sm font-medium'>
+                <svg className="h-8 w-8 inline-flex pr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                  Salir
+                </button>
           </div>
         </div>
 

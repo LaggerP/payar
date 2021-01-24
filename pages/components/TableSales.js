@@ -3,16 +3,21 @@ import Router from 'next/router'
 
 
 const cryptoIcon = (crypto) => {
-   if (crypto === 'Bitcoin')
-      return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/btc.svg"></img>
-   else if (crypto === 'Litecoin')
-      return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/ltc.svg"></img>
-   else if (crypto === 'Ethereum')
-      return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg"></img>
-   else if (crypto === 'Dash coin')
-      return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/dash.svg"></img>
+   switch (crypto) {
+      case 'Bitcoin':
+         return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/btc.svg"></img>
+      case 'Litecoin':
+         return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/ltc.svg"></img>
+      case 'Ethereum':
+         return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg"></img>
+      case 'Dash coin':
+         return <img className="w-5" src="https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/dash.svg"></img>
+      default:
+         break;
+   }
 }
-export default function TableSales (props) {
+
+export default function TableSales(props) {
    const [message, setMessage] = useState('');
    const contentType = 'application/json'
 
@@ -54,7 +59,7 @@ export default function TableSales (props) {
       Router.reload('admin/dashboard')
    }
 
-   if(props.cobro !== undefined) {
+   if (props.cobro !== undefined) {
       return (
          <tr className="">
             <td className="px-6 py-4 whitespace-nowrap">
@@ -83,7 +88,7 @@ export default function TableSales (props) {
             <td className="px-6 py-4 whitespace-nowrap">
                {
                   props.cobro.transaction_status ?
-   
+
                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                         <svg className="w-5 h-5 pr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
@@ -110,7 +115,7 @@ export default function TableSales (props) {
                      Venta/Transacción confirmada
                   </span>
                      </>
-   
+
                      :
                      <>
                         <button className="mr-2" title="Confirmar recepción del pago" onClick={() => confirmSale()}>
@@ -132,5 +137,5 @@ export default function TableSales (props) {
       return null
    }
 
-  
+
 }

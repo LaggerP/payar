@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Head from 'next/head'
 import myGet from '../../api/myGet'
 
 import Navbar from '../components/Navbar'
@@ -11,6 +12,9 @@ const Direcciones = (props) => {
 
   return (
     <>
+      <Head>
+        <title>Direcciones - Payar</title>
+      </Head>
       <Navbar uri="direcciones" />
       <div className="container mx-auto">
         <div className="mt-10">
