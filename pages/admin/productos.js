@@ -9,10 +9,57 @@ import ReactModal from 'react-modal';
 
 const Productos = (props) => {
 
+   const contentType = 'application/json'
+
+   let initialProductState = {
+      product_name: '',
+      product_description: '',
+      product_price: 0,
+      photo: '',
+   }
+
    const { data } = props
-   const [showModal, setShowModal] = useState(false)
+   const [showModal, setShowModal] = useState(false);
+   const [productData, setProductData] = useState(initialProductState);
+   const [loading, setLoading] = useState(false);
+   const [message, setMessage] = useState('');
 
    const openModal = () => !showModal ? setShowModal(true) : setShowModal(false)
+
+   const handleChange = (e) => {
+      const { name, value } = e.target;
+      setProductData({
+         ...productData,
+         [name]: value
+      });
+      if (name === 'product_price') // ¿Transformar input price a float?
+         productData.product_price = parseFloat(value)
+   }
+
+   const newProduct = async (e) => {
+      setLoading(true)
+      e.preventDefault();
+      productData.email_reference = 'droga@mail.com' // ¿Cómo referencio a la persona logueada?
+      productData.status = true
+      try {
+         const res = await fetch('/api/productos', {
+            method: 'POST',
+            headers: {
+               Accept: contentType,
+               'Content-Type': contentType,
+            },
+            body: JSON.stringify(productData),
+         })
+         if (!res.ok) {
+            setLoading(false)
+            throw new Error(res.status)
+         } else {
+            setShowModal(false)
+         }
+      } catch (error) {
+         setMessage('Fallo al crear un nuevo producto')
+      }
+   }
 
    return (
       <>
@@ -31,8 +78,12 @@ const Productos = (props) => {
                <ReactModal
                   isOpen={showModal}
                   contentLabel="Minimal Modal Example"
+                  ariaHideApp={false}
                >
-                  <section class="py-40 bg-gray-100  bg-opacity-50 h-screen">
+                  {/* <section class="py-40 bg-gray-100  bg-opacity-50 h-screen"> 
+                  Cambio a form asi puedo hacer uso del required en el input
+                  */}
+                  <form className="py-40 bg-gray-100  bg-opacity-50 h-screen" onSubmit={newProduct} method="POST">
                      <div class="mx-auto container max-w-2xl md:w-3/4 shadow-md">
                         <div class="bg-gray-100 p-4 border-t-2 bg-opacity-5 border-indigo-600 rounded-t">
                            <div class="max-w-sm mx-auto md:w-full md:mx-0">
@@ -50,9 +101,12 @@ const Productos = (props) => {
                                     <label class="text-sm text-gray-400">Nombre</label>
                                     <div class="w-full inline-flex border">
                                        <input
+                                          name="product_name"
                                           type="text"
+                                          required
                                           class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                                           placeholder="Café con Leche"
+                                          onChange={handleChange}
                                        />
                                     </div>
                                  </div>
@@ -60,9 +114,12 @@ const Productos = (props) => {
                                     <label class="text-sm text-gray-400">Descripción</label>
                                     <div class="w-full inline-flex border">
                                        <input
+                                          name="product_description"
                                           type="text"
+                                          required
                                           class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                                           placeholder="Café con Leche hecho en máquina expreso"
+                                          onChange={handleChange}
                                        />
                                     </div>
                                  </div>
@@ -70,46 +127,75 @@ const Productos = (props) => {
                                     <label class="text-sm text-gray-400">Precio</label>
                                     <div class="w-full inline-flex border">
                                        <input
+                                          name="product_price"
                                           type="number"
+                                          required
+                                          min={0}
                                           class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                                           placeholder="$90"
+                                          onChange={handleChange}
                                        />
                                     </div>
                                  </div>
                                  <div class="md:w-2/3 max-w-sm mx-auto">
                                     <label class="text-sm text-gray-400">Imagen</label>
                                     <div class="w-full inline-flex border">
-                                       <input type='file' id='single' class="w-11/12 focus:outline-none focus:text-gray-600 p-2"  />
+                                       <input
+                                          name='photo'
+                                          type='file'
+                                          id='single'
+                                          class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
+                                          onChange={handleChange} />
                                     </div>
                                  </div>
                               </div>
 
                            </div>
 
-                           
+                           <div class="flex">
+                              <div class="w-full p-4 text-left text-gray-500">
+                                 <button onClick={openModal} class="cursor-pointer inline-flex items-center focus:outline-none mr-4 px-3 py-2 rounded-md text-sm font-medium hover:bg-red-500 hover:text-white">
+                                    <svg
+                                       fill="none"
+                                       class="w-4 mr-2"
+                                       viewBox="0 0 24 24"
+                                       stroke="currentColor"
+                                    >
+                                       <path
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                       />
+                                    </svg>
+                                    Cancelar creación
+                            </button>
+                              </div>
 
-                          
-                           <div class="w-full p-4 text-right text-gray-500">
-                              <button onClick={openModal} class="cursor-pointer inline-flex items-center focus:outline-none mr-4">
-                                 <svg
-                                    fill="none"
-                                    class="w-4 mr-2"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                 >
-                                    <path
-                                       stroke-linecap="round"
-                                       stroke-linejoin="round"
-                                       stroke-width="2"
-                                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                    />
-                                 </svg>
-              Cancelar creación
-            </button>
+                              <div class="w-full p-4 text-right text-gray-500">
+                                 <button type="submit" class="cursor-pointer inline-flex items-center focus:outline-none mr-4 px-3 py-2 rounded-md text-sm font-medium hover:bg-green-500 hover:text-white">
+                                    <svg
+                                       fill="none"
+                                       class="w-4 mr-2"
+                                       viewBox="0 0 24 24"
+                                       stroke="currentColor"
+                                    >
+                                       <path
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                       />
+                                    </svg>
+                                    Crear producto
+                            </button>
+                              </div>
                            </div>
+
                         </div>
                      </div>
-                  </section>
+                  </form>
+                  {/* </section> */}
 
                </ReactModal>
             </div>
