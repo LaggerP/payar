@@ -17,7 +17,10 @@ export default function Navbar(props) {
       <nav className="bg-indigo-500">
         <div className="flex items-center p-4 pl-0">
           <div className="flex-shrink-0">
-            <img className="ml-5 h-12 w-12" src="../icon.png" alt="Payar icon" />
+            <Link href="/admin/dashboard" passHref>
+              <img className="ml-5 h-12 w-12" src="../icon.png" alt="Payar icon" />
+            </Link>
+
           </div>
           <div className="w-screen hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
@@ -105,7 +108,7 @@ export default function Navbar(props) {
               </button>
             </Link>
             <button onClick={logout} className='bg-indigo-500 hover:bg-red-400 text-white hover:text-black px-3 py-2 text-sm font-medium'>
-                <svg className="h-8 w-8 inline-flex pr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+              <svg className="h-8 w-8 inline-flex pr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                   Salir
                 </button>
           </div>

@@ -19,8 +19,6 @@ const cryptoIcon = (crypto) => {
 
 const CardCryptoAddress = (props) => {
    const [message, setMessage] = useState('')
-   console.log(props.data.crypto_coin)
-
    const deleteAddress = async (objId) => {
       try {
          const res = await fetch('/api/direcciones', {
