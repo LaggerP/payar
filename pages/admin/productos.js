@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import myGet from '../../api/myGet'
+import Cookies from 'js-cookie'
 
 import Navbar from '../components/Navbar'
 import CardProduct from '../components/CardProduct'
@@ -15,7 +16,9 @@ const Productos = (props) => {
       product_name: '',
       product_description: '',
       product_price: 0,
-      photo: '',
+      imgUrl: '',
+      email_reference: Cookies.get('email'),
+      status: true,
    }
 
    const { data } = props
@@ -23,6 +26,11 @@ const Productos = (props) => {
    const [productData, setProductData] = useState(initialProductState);
    const [loading, setLoading] = useState(false);
    const [message, setMessage] = useState('');
+   const [products, setProducts] = useState([]);
+
+   useEffect(()=>{
+      getProducts()
+   }, [products])
 
    const openModal = () => !showModal ? setShowModal(true) : setShowModal(false)
 
@@ -32,15 +40,30 @@ const Productos = (props) => {
          ...productData,
          [name]: value
       });
-      if (name === 'product_price') // ¿Transformar input price a float?
-         productData.product_price = parseFloat(value)
+   }
+
+   const getProducts = async() => {
+      try{
+         const res = await fetch('/api/productos', {
+            method: 'GET',
+            headers: {
+               Accept: contentType,
+               'Content-Type': contentType,
+            },
+         }).then(r => r.json().then(data => data)) // ???
+         if (!res.success) {
+            throw new Error(res.status)
+         } else {
+            setProducts(res.data)
+         }
+      } catch (error) {
+      setMessage('Fallo al buscar productos')
+      }
    }
 
    const newProduct = async (e) => {
       setLoading(true)
       e.preventDefault();
-      productData.email_reference = 'droga@mail.com' // ¿Cómo referencio a la persona logueada?
-      productData.status = true
       try {
          const res = await fetch('/api/productos', {
             method: 'POST',
@@ -83,7 +106,7 @@ const Productos = (props) => {
                   {/* <section class="py-40 bg-gray-100  bg-opacity-50 h-screen"> 
                   Cambio a form asi puedo hacer uso del required en el input
                   */}
-                  <form className="py-40 bg-gray-100  bg-opacity-50 h-screen" onSubmit={newProduct} method="POST">
+                  <form className="py-40 bg-gray-100 bg-opacity-50 h-screen" onSubmit={newProduct} method="POST">
                      <div class="mx-auto container max-w-2xl md:w-3/4 shadow-md">
                         <div class="bg-gray-100 p-4 border-t-2 bg-opacity-5 border-indigo-600 rounded-t">
                            <div class="max-w-sm mx-auto md:w-full md:mx-0">
@@ -141,7 +164,7 @@ const Productos = (props) => {
                                     <label class="text-sm text-gray-400">Imagen</label>
                                     <div class="w-full inline-flex border">
                                        <input
-                                          name='photo'
+                                          name='imgUrl'
                                           type='file'
                                           id='single'
                                           class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
@@ -199,12 +222,10 @@ const Productos = (props) => {
 
                </ReactModal>
             </div>
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
-            <CardProduct />
 
+            {products.map(p=>{
+               return <CardProduct data={p}/>
+            })}
 
          </div>
 

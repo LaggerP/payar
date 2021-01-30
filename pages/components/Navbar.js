@@ -18,7 +18,7 @@ export default function Navbar(props) {
         <div className="flex items-center p-4 pl-0">
           <div className="flex-shrink-0">
             <Link href="/admin/dashboard" passHref>
-              <img className="ml-5 h-12 w-12" src="../icon.png" alt="Payar icon" />
+              <img className="ml-5 h-12 w-12 cursor-pointer" src="../icon.png" alt="Payar icon" />
             </Link>
 
           </div>
