@@ -7,7 +7,6 @@ import CardCryptoAddress from '../components/CardCryptoAddress'
 import FormNewAddress from '../components/FormNewAddress'
 
 const Direcciones = (props) => {
-
   const { data } = props
 
   return (
@@ -21,7 +20,7 @@ const Direcciones = (props) => {
           <h3 className="text-xl mb-4 ml-2 md:ml-1">Direcciones actuales:</h3>
           <div className="flex flex-wrap ">
             {
-              (data.length !== 0) ?
+              (data !== null || data.length>=0) ?
                 data.map((direccion, idx) => {
                   return <CardCryptoAddress key={idx} data={direccion} />
                 })

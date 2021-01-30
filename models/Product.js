@@ -17,8 +17,8 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  email_reference: {
-    /* Referencia al email de la cuenta */
+  user_id: {
+    /* Referencia al _id de la cuenta */
     type: String,
     required: true
   },

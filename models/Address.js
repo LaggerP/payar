@@ -16,8 +16,8 @@ const AddressSchema = new mongoose.Schema({
     /* Direccion de la billetera a la que se van a acreditar las criptomonedas tras realizar el cobro del producto */
     type: String,
   },
-  email_reference: {
-    /* Referencia al email de la cuenta */
+  user_id: {
+    /* Referencia al _id de la cuenta */
     type: String,
   },
   status: {

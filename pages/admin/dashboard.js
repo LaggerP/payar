@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar'
 import TableSales from '../components/TableSales'
 
 const Dashboard = (props) => {
-   const [cobros, setCobros] = useState(props.data)
+   const [cobros, setCobros] = useState(props.data || [])
    const [loading, setLoading] = useState(false)
 
    if (!loading) {

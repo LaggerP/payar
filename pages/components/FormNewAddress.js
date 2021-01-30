@@ -8,7 +8,7 @@ const FormNewAddress = (props) => {
       crypto_coin: '',
       crypto_address: '',
       crypto_reference: '',
-      email_reference: Cookie.get('email'),
+      user_id: Cookie.get('_id'),
       status: true,
    }
 

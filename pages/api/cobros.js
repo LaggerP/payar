@@ -9,7 +9,7 @@ export default middlewares(async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const cobros = await Cobro.find({ email_reference: req.cookies.email })
+        const cobros = await Cobro.find({user_id: req.cookies._id})
         res.status(200).json({ success: true, data: cobros })
       } catch (error) {
         res.status(400).json({ success: false })
