@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import myGet from '../../api/myGet'
@@ -7,11 +7,11 @@ import Navbar from '../components/Navbar'
 import TableSales from '../components/TableSales'
 
 const Dashboard = (props) => {
-   const [cobros, setCobros] = useState(props.data || [])
-   const [loading, setLoading] = useState(false)
+  const [cobros, setCobros] = useState(props.data || [])
+  const [loading, setLoading] = useState(false)
 
-   if (!loading) {
-      return (
+  if (!loading) {
+    return (
          <>
             <Head>
                <title>Dashboard - Payar</title>
@@ -46,16 +46,15 @@ const Dashboard = (props) => {
                               </thead>
                               <tbody className="bg-white divide-y divide-gray-200">
                                  {
-                                    (cobros.length !== 0) ?
-                                       cobros.map((cobro, idx) => {
-                                          return <TableSales key={idx} cobro={cobro} />
-                                       })
-                                       :
-                                       <tr>
+                                    (cobros.length !== 0)
+                                      ? cobros.map((cobro, idx) => {
+                                        return <TableSales key={idx} cobro={cobro} />
+                                      })
+                                      : <tr>
                                           <td className="px-6 py-4 whitespace-nowrap">
                                              <div className="flex items-center">
                                                 <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-100">
-                                                   <svg className="w-6 h-6 stroke-current text-indigo-500" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                                   <svg className="w-6 h-6 stroke-current text-indigo-500" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                                                 </div>
                                                 <div className="ml-4">
                                                    <div className="text-md font-medium text-gray-900">
@@ -90,20 +89,19 @@ const Dashboard = (props) => {
                </div>
             </div>
          </>
-      )
-   } else {
-      return (
+    )
+  } else {
+    return (
          <div className="w-screen h-screen justify-center flex items-center">
             <h1 className="text-4xl font-extrabold tracking-wide text-black">Cargando información...</h1>
          </div>
-      )
-   }
-
+    )
+  }
 }
 
 Dashboard.getInitialProps = async props => {
-   const url = process.env.NODE_ENV === 'production' ? 'https://payar.vercel.app/api/cobros' : 'http://localhost:3000/api/cobros'
-   return await myGet(url, props);
-};
+  const url = process.env.NODE_ENV === 'production' ? 'https://payar.vercel.app/api/cobros' : 'http://localhost:3000/api/cobros'
+  return await myGet(url, props)
+}
 
-export default Dashboard;
+export default Dashboard

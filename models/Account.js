@@ -4,18 +4,18 @@ import mongoose from 'mongoose'
 const AccountSchema = new mongoose.Schema({
   firstname: {
     type: String,
-    required: [true, 'Ingrese su nombre'],
+    required: [true, 'Ingrese su nombre']
   },
   lastname: {
     type: String,
-    required: [true, 'Ingrese su apellido'],
+    required: [true, 'Ingrese su apellido']
   },
   email: {
-    type: String,
+    type: String
   },
   password: {
-    type: String,
-  },
+    type: String
+  }
 })
 
 export default mongoose.models.Account || mongoose.model('Account', AccountSchema)

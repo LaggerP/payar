@@ -3,40 +3,40 @@ import mongoose from 'mongoose'
 /* Coleccion CobroSchema. */
 
 const CobroSchema = new mongoose.Schema({
-  product_description: {
+  productDescription: {
     /* Descripción del producto que se esta cobrando */
     type: String,
-    required: [true, 'Ingrese una descripción que haga referencia del producto que se va a cobrar'],
+    required: [true, 'Ingrese una descripción que haga referencia del producto que se va a cobrar']
   },
-  crypto_coin: {
+  cryptoCoin: {
     /* Criptomoneda a utilizar */
     type: String,
-    required: [true, 'Especifique la criptomoneda a utilizar'],
+    required: [true, 'Especifique la criptomoneda a utilizar']
   },
-  crypto_address: {
+  cryptoAddress: {
     /* Direccion de la billetera a la que se van a acreditar las criptomonedas tras realizar el cobro del producto */
-    type: String,
+    type: String
   },
-  product_price: {
+  productPrice: {
     /* Precio del producto que se esta cobrando */
-    type: Number 
+    type: Number
   },
-  qr_url: {
+  qrUrl: {
     /* Url del codigo qr generado por la api */
-    type: String,
+    type: String
   },
-  user_id: {
+  userId: {
     /* Referencia al _id de la cuenta */
-    type: String,
+    type: String
   },
-  transaction_status: {
+  transactionStatus: {
     /* Referencia al estado de la transferencia */
-    type: Boolean,
+    type: Boolean
   },
   status: {
     /* Estado de la transacción */
-    type: Boolean,
-  },
+    type: Boolean
+  }
 })
 
 export default mongoose.models.Cobro || mongoose.model('Cobro', CobroSchema)

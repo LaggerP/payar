@@ -3,27 +3,27 @@ import mongoose from 'mongoose'
 /* Coleccion AddresSchema. */
 
 const AddressSchema = new mongoose.Schema({
-  crypto_coin: {
+  cryptoCoin: {
     /* Criptomoneda asociada a la direccion */
     type: String,
-    required: [true, 'Especifique la criptomoneda a utilizar'],
+    required: [true, 'Especifique la criptomoneda a utilizar']
   },
-  crypto_address: {
+  cryptoAddress: {
     /* Direccion de la billetera a la que se van a acreditar las criptomonedas tras realizar el cobro del producto */
-    type: String,
+    type: String
   },
-  crypto_reference: {
+  cryptoReference: {
     /* Direccion de la billetera a la que se van a acreditar las criptomonedas tras realizar el cobro del producto */
-    type: String,
+    type: String
   },
-  user_id: {
+  userId: {
     /* Referencia al _id de la cuenta */
-    type: String,
+    type: String
   },
   status: {
     /* Determina si la direccion esta activa o no */
-    type: Boolean,
-  },
+    type: Boolean
+  }
 })
 
 export default mongoose.models.Address || mongoose.model('Address', AddressSchema)

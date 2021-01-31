@@ -2,26 +2,28 @@ import dbConnect from '../../utils/database'
 import Cobro from '../../models/Cobro'
 import middlewares from './middlewares/middlewares'
 
-export default middlewares(async function handler(req, res) {
+export default middlewares(async function handler (req, res) {
   const { method } = req
   await dbConnect()
 
   switch (method) {
-    case 'GET':
+    case 'GET': {
       try {
-        const cobros = await Cobro.find({user_id: req.cookies._id})
+        const cobros = await Cobro.find({ userId: req.cookies._id })
         res.status(200).json({ success: true, data: cobros })
       } catch (error) {
         res.status(400).json({ success: false })
       }
       break
-    case 'POST':
-      const { product_description, crypto_coin, crypto_address, product_price } = req.body
+    }
 
-      const qrUri = `https://chart.googleapis.com/chart?chs=225x225&chld=L|2&cht=qr&chl=${crypto_coin}:${crypto_address}?amount=${product_price}%26`;
+    case 'POST': {
+      const { cryptoCoin, cryptoAddress, productPrice } = req.body
 
-      req.body.qr_url = qrUri;
-      req.body.transaction_status = false;
+      const qrUri = `https://chart.googleapis.com/chart?chs=225x225&chld=L|2&cht=qr&chl=${cryptoCoin}:${cryptoAddress}?amount=${productPrice}%26`
+
+      req.body.qrUrl = qrUri
+      req.body.transactionStatus = false
 
       try {
         const cobro = await Cobro.create(req.body)
@@ -30,16 +32,21 @@ export default middlewares(async function handler(req, res) {
         res.status(400).json({ success: false })
       }
       break
-    case 'PATCH':
+    }
+
+    case 'PATCH': {
       try {
-        const cobro = await Cobro.findByIdAndUpdate(req.body, {transaction_status: true})
+        const cobro = await Cobro.findByIdAndUpdate(req.body, { transactionStatus: true })
         res.status(201).json({ success: true, data: cobro })
       } catch (error) {
         res.status(400).json({ success: false })
       }
       break
-    default:
+    }
+
+    default: {
       res.status(400).json({ success: false })
       break
+    }
   }
-}) 
+})
