@@ -11,7 +11,7 @@ export default middlewares(async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const walletsAddress = await Address.find({ email_reference: req.cookies.email })
+        const walletsAddress = await Address.find({user_id: req.cookies._id})
         res.status(200).json({ success: true, data: walletsAddress })
       } catch (error) {
         res.status(400).json({ success: false })

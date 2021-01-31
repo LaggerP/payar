@@ -16,6 +16,7 @@ export default function Login() {
    const [message, setMessage] = useState('');
 
    const contentType = 'application/json'
+   const hourExpiration = new Date(new Date().getTime() + 60 * 60 * 1000);
 
    const handleChange = (e) => {
       const { name, value } = e.target;
@@ -24,7 +25,7 @@ export default function Login() {
          [name]: value
       });
       if (name === 'email') {
-         Cookie.set("email", value)
+         Cookie.set("email", value, {expires: hourExpiration})
       }
    }
 
@@ -40,6 +41,9 @@ export default function Login() {
             },
             body: JSON.stringify(accountData),
          })
+         const userId = await res.json()
+         await Cookie.set("_id", userId, {expires: hourExpiration})
+         
          if (!res.ok) {
             setWrongCredentials(true)
             setLoading(false)

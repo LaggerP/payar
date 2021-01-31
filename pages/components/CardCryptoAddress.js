@@ -18,6 +18,8 @@ const cryptoIcon = (crypto) => {
 
 
 const CardCryptoAddress = (props) => {
+   const contentType = 'application/json'
+
    const [message, setMessage] = useState('')
    const deleteAddress = async (objId) => {
       try {
@@ -33,7 +35,6 @@ const CardCryptoAddress = (props) => {
             throw new Error(res.status)
          } else {
             Router.reload('admin/direcciones')
-
          }
       } catch (error) {
          setMessage('Fallo al crear un nuevo cobro')
