@@ -25,8 +25,8 @@ const CobroSchema = new mongoose.Schema({
     /* Url del codigo qr generado por la api */
     type: String,
   },
-  email_reference: {
-    /* Referencia al email de la cuenta */
+  user_id: {
+    /* Referencia al _id de la cuenta */
     type: String,
   },
   transaction_status: {

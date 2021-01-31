@@ -21,7 +21,8 @@ export default async function login(req, res) {
                maxAge: 3600,
                path: '/'
             }))
-            res.json({ msg: 'Bienvenid@ de nuevo' })
+            
+            res.json(_account._id )
          } else {
             res.status(409).json({ msg: 'Ocurrio un error, revise sus credenciales' })
          }

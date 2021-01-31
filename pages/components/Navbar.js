@@ -8,6 +8,7 @@ export default function Navbar(props) {
 
   const logout = () => {
     Cookie.remove('email');
+    Cookie.remove('_id');
     Cookie.remove('authToken');
     Router.push('/');
   }
