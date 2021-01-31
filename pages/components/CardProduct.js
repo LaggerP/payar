@@ -4,6 +4,8 @@ import ReactModal from 'react-modal';
 
 const CardProduct = (props) => {
 
+   const {product_name, product_description, product_price} = props.data
+
    const contentType = 'application/json'
 
    const [message, setMessage] = useState('');
@@ -36,14 +38,14 @@ const CardProduct = (props) => {
             <div class="flex-auto pl-6 bg-indigo-50 rounded-r-lg">
                <div class="flex flex-wrap items-baseline">
                   <h1 class="w-full flex-none font-semibold mb-2.5 mt-2.5">
-                     {props.data.product_name}
+                     {product_name}
                   </h1>
                   <div class="text-4xl leading-7 font-bold text-indigo-600">
-                     ${props.data.product_price}
+                     ${product_price}
                   </div>
                </div>
                <div class="flex items-baseline text-xs my-8">
-                  {props.data.product_description}
+                  {product_description}
                </div>
                <div class="flex space-x-3 mb-4 text-sm font-semibold">
                   <button class="flex-none flex items-center justify-center w-9 h-9 rounded-full bg-indigo-200 text-indigo-700 hover:bg-indigo-300 hover:text-white focus:outline-none" type="button" aria-label="like" title="Editar producto">

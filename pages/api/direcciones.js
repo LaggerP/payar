@@ -34,7 +34,6 @@ export default middlewares(async function handler(req, res) {
       }
       break
     case 'DELETE':
-      console.log("jeje")
       try {
         const walletAddress = await Address.deleteOne({ _id: req.body });
         res.status(201).json({ success: true, data: walletAddress })

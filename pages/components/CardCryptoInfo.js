@@ -9,7 +9,6 @@ export default function CardCryptoInfo (props) {
       const info = await fetch(`https://data.messari.io/api/v1/assets/${props.coin}/metrics`)
       const crypto = await info.json()
       setCryptoInfo(crypto.data)
-      console.log(cryptoInfo.market_data.price_usd)
     }
 
    useEffect(async () => {
