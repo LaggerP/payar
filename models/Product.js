@@ -2,33 +2,33 @@ import mongoose from 'mongoose'
 
 /* Coleccion ProductSchema. */
 const ProductSchema = new mongoose.Schema({
-  product_name: {
+  productName: {
     /* Nombre del producto */
     type: String,
-    required: true,
+    required: true
   },
-  product_description: {
+  productDescription: {
     /* Descripción del producto */
     type: String,
-    required: true,
+    required: true
   },
-  product_price: {
+  productPrice: {
     /* Precio del producto */
     type: Number,
     required: true
   },
-  user_id: {
+  userId: {
     /* Referencia al _id de la cuenta */
     type: String,
     required: true
   },
   status: {
     /* Estado del producto */
-    type: Boolean,
+    type: Boolean
   },
   imgUrl: {
-    type: String,
-  },
+    type: String
+  }
 })
 
 export default mongoose.models.Producto || mongoose.model('Producto', ProductSchema)
