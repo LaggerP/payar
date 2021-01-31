@@ -1,13 +1,10 @@
-/* eslint-disable */
 import fetch from 'isomorphic-unfetch'
 import Router from 'next/router'
 
 export default async function myGet (url, ctx) {
-  
-  const cookie = ctx.req?.headers.cookie
   const resp = await fetch(url, {
     headers: {
-      cookie: cookie
+      cookie: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
     }
   })
 
@@ -17,10 +14,10 @@ export default async function myGet (url, ctx) {
   }
 
   if (resp.status === 401 && ctx.req) {
-    ctx.res?.writeHead(302, {
+    ctx.res.writeHead(302, {
       Location: 'login'
     })
-    ctx.res?.end()
+    ctx.res.end()
     return
   }
 
