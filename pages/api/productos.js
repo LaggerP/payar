@@ -24,6 +24,7 @@ export default middlewares(async function handler (req, res) {
     }
 
     case 'POST': {
+      console.log('aca')
       try {
         const producto = await Producto.create(req.body)
         res.status(201).json({ success: true, data: producto })

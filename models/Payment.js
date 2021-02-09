@@ -39,4 +39,4 @@ const CobroSchema = new mongoose.Schema({
   }
 })
 
-export default mongoose.models.Cobro || mongoose.model('Cobro', CobroSchema)
+export default mongoose.models.Cobro || mongoose.model('Payment', CobroSchema)

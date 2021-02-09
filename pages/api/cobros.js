@@ -1,5 +1,5 @@
 import dbConnect from '../../utils/database'
-import Cobro from '../../models/Cobro'
+import Cobro from '../../models/Payment'
 import middlewares from './middlewares/middlewares'
 
 export default middlewares(async function handler (req, res) {

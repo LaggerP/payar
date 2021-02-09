@@ -9,58 +9,58 @@ import CardProduct from '../components/CardProduct'
 import ReactModal from 'react-modal'
 
 const Productos = (props) => {
-  const contentType = 'application/json'
+   const contentType = 'application/json'
 
-  const initialProductState = {
-    productName: '',
-    productDescription: '',
-    productPrice: 0,
-    imgUrl: '',
-    userId: Cookies.get('_id'),
-    status: true
-  }
+   const initialProductState = {
+      productName: '',
+      productDescription: '',
+      productPrice: 0,
+      imgUrl: '',
+      userId: Cookies.get('_id'),
+      status: true
+   }
 
-  const { data } = props
-  const [showModal, setShowModal] = useState(false)
-  const [productData, setProductData] = useState(initialProductState)
-  const [message, setMessage] = useState('')
-  const [products, setProducts] = useState(props.data)
+   const { data } = props
+   const [showModal, setShowModal] = useState(false)
+   const [productData, setProductData] = useState(initialProductState)
+   const [message, setMessage] = useState('')
+   const [products, setProducts] = useState(props.data)
 
 
-  const openModal = () => !showModal ? setShowModal(true) : setShowModal(false)
+   const openModal = () => !showModal ? setShowModal(true) : setShowModal(false)
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setProductData({
-      ...productData,
-      [name]: value
-    })
-  }
-
-  const newProduct = async (e) => {
-    setLoading(true)
-    e.preventDefault()
-    try {
-      const res = await fetch('/api/productos', {
-        method: 'POST',
-        headers: {
-          Accept: contentType,
-          'Content-Type': contentType
-        },
-        body: JSON.stringify(productData)
+   const handleChange = (e) => {
+      const { name, value } = e.target
+      setProductData({
+         ...productData,
+         [name]: value
       })
-      if (!res.ok) {
-        setLoading(false)
-        throw new Error(res.status)
-      } else {
-        setShowModal(false)
-      }
-    } catch (error) {
-      setMessage('Fallo al crear un nuevo producto')
-    }
-  }
+   }
 
-  return (
+   const newProduct = async (e) => {
+      setLoading(true)
+      e.preventDefault()
+      try {
+         const res = await fetch('/api/productos', {
+            method: 'POST',
+            headers: {
+               Accept: contentType,
+               'Content-Type': contentType
+            },
+            body: JSON.stringify(productData)
+         })
+         if (!res.ok) {
+            setLoading(false)
+            throw new Error(res.status)
+         } else {
+            setShowModal(false)
+         }
+      } catch (error) {
+         setMessage('Fallo al crear un nuevo producto')
+      } 
+   }
+
+   return (
       <>
          <Head>
             <title>Productos - Payar</title>
@@ -147,7 +147,26 @@ const Productos = (props) => {
 
                            </div>
 
-                           <div className="flex justify-end pb-4 pr-2">
+                           <div className="flex justify-around pb-4 pr-2">
+
+                              <div className="p-2  text-gray-500">
+                                 <button onClick={openModal} className="cursor-pointer inline-flex items-center focus:outline-none  px-3 py-2 rounded-md text-sm font-medium bg-red-400 hover:bg-red-500 text-white">
+                                    <svg
+                                       fill="none"
+                                       className="w-4 mr-2"
+                                       viewBox="0 0 24 24"
+                                       stroke="currentColor"
+                                    >
+                                       <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth="2"
+                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                       />
+                                    </svg>
+                                    Cancelar creación
+                                 </button>
+                              </div>
 
                               <div className="p-2 text-gray-500">
                                  <button type="submit" className="cursor-pointer inline-flex items-center focus:outline-none px-3 py-2 rounded-md text-sm font-medium bg-indigo-400  hover:bg-green-500 text-white">
@@ -167,24 +186,6 @@ const Productos = (props) => {
                                     Crear producto
                                  </button>
                               </div>
-                              <div className="p-2  text-gray-500">
-                                 <button onClick={openModal} className="cursor-pointer inline-flex items-center focus:outline-none  px-3 py-2 rounded-md text-sm font-medium bg-red-400 hover:bg-red-500 text-white">
-                                    <svg
-                                       fill="none"
-                                       className="w-4 mr-2"
-                                       viewBox="0 0 24 24"
-                                       stroke="currentColor"
-                                    >
-                                       <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth="2"
-                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                       />
-                                    </svg>
-                                    Cancelar creación
-                                 </button>
-                              </div>
                            </div>
 
                         </div>
@@ -196,21 +197,21 @@ const Productos = (props) => {
             {
                (data !== null || data.length >= 0)
 
-                 ? products.map((p, idx) => {
-                   return <CardProduct data={p} key={idx}/>
-                 })
-                 : null}
+                  ? products.map((p, idx) => {
+                     return <CardProduct data={p} key={idx} />
+                  })
+                  : null}
 
          </div>
 
       </>
-  )
+   )
 }
 
 Productos.getInitialProps = async props => {
-  const url = process.env.NODE_ENV === 'production' ? 'https://payar.vercel.app/api/productos/' : 'http://localhost:3000/api/productos/'
+   const url = process.env.NODE_ENV === 'production' ? 'https://payar.vercel.app/api/productos/' : 'http://localhost:3000/api/productos/'
 
-  return await myGet(url, props)
+   return await myGet(url, props)
 }
 
 export default Productos
