@@ -1,5 +1,5 @@
 import dbConnect from '../../utils/database'
-import Producto from '../../models/Product'
+import Product from '../../models/Product'
 import middlewares from './middlewares/middlewares'
 
 export const config = { // Oculta: API resolved without sending a response for /api/productos, this may result in stalled requests.
@@ -15,7 +15,7 @@ export default middlewares(async function handler (req, res) {
   switch (method) {
     case 'GET': {
       try {
-        const productos = await Producto.find({ userId: req.cookies._id, status: true })
+        const productos = await Product.find({ userId: req.cookies._id, status: true })
         res.status(200).json({ success: true, data: productos })
       } catch (error) {
         res.status(400).json({ success: false })
@@ -26,7 +26,7 @@ export default middlewares(async function handler (req, res) {
     case 'POST': {
       console.log('aca')
       try {
-        const producto = await Producto.create(req.body)
+        const producto = await Product.create(req.body)
         res.status(201).json({ success: true, data: producto })
       } catch (error) {
         res.status(400).json({ success: false })
@@ -36,7 +36,7 @@ export default middlewares(async function handler (req, res) {
 
     case 'DELETE': {
       try {
-        const producto = await Producto.findOneAndUpdate({ _id: req.body.idProduct }, { $set: { status: false } })
+        const producto = await Product.findOneAndUpdate({ _id: req.body.idProduct }, { $set: { status: false } })
         res.status(201).json({ success: true, data: producto })
       } catch (error) {
         res.status(400).json({ success: false })

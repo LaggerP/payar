@@ -1,5 +1,5 @@
 import dbConnect from '../../utils/database'
-import Cobro from '../../models/Payment'
+import Payment from '../../models/Payment'
 import middlewares from './middlewares/middlewares'
 
 export default middlewares(async function handler (req, res) {
@@ -9,7 +9,7 @@ export default middlewares(async function handler (req, res) {
   switch (method) {
     case 'GET': {
       try {
-        const cobros = await Cobro.find({ userId: req.cookies._id })
+        const cobros = await Payment.find({ userId: req.cookies._id })
         res.status(200).json({ success: true, data: cobros })
       } catch (error) {
         res.status(400).json({ success: false })
@@ -26,7 +26,7 @@ export default middlewares(async function handler (req, res) {
       req.body.transactionStatus = false
 
       try {
-        const cobro = await Cobro.create(req.body)
+        const cobro = await Payment.create(req.body)
         res.status(201).json({ success: true, data: cobro })
       } catch (error) {
         res.status(400).json({ success: false })
@@ -36,7 +36,7 @@ export default middlewares(async function handler (req, res) {
 
     case 'PATCH': {
       try {
-        const cobro = await Cobro.findByIdAndUpdate(req.body, { transactionStatus: true })
+        const cobro = await Payment.findByIdAndUpdate(req.body, { transactionStatus: true })
         res.status(201).json({ success: true, data: cobro })
       } catch (error) {
         res.status(400).json({ success: false })
