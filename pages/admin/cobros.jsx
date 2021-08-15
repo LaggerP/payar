@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import myGet from '../../api/myGet'
-import Cookies from 'js-cookie'
+import { getCookie, getCookieFromBrowser } from '../../utils/cookie'
 import { Router } from 'next/router'
 
 const Cobros = (props) => {
@@ -13,7 +13,7 @@ const Cobros = (props) => {
     cryptoCoin: '',
     cryptoAddress: '',
     productPrice: 0,
-    userId: Cookies.get('_id')
+    userId: getCookieFromBrowser('_id')
   }
 
   const [payData, setPayData] = useState(initialState)
@@ -114,9 +114,12 @@ const Cobros = (props) => {
   }
 }
 
-Cobros.getInitialProps = async props => {
+Cobros.getInitialProps = async ({ req, res }) => {
+  console.log("hola")
+  const token = getCookie('authToken', req)
+  console.log(token)
   const url = process.env.NODE_ENV === 'production' ? 'https://payar.vercel.app/api/direcciones/' : 'http://localhost:3000/api/direcciones/'
-  return await myGet(url, props)
+  return await myGet(url, req)
 }
 
 export default Cobros

@@ -5,6 +5,12 @@ import { compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
 import cookie from 'cookie'
 
+export const config = {
+  api: {
+    externalResolver: true
+  }
+}
+
 export default async function login (req, res) {
   try {
     await dbConnect()
@@ -22,7 +28,10 @@ export default async function login (req, res) {
           path: '/'
         }))
 
-        res.json(_account._id)
+        res.status(200).json({
+          _id: _account._id,
+          token: jwt
+        })
       } else {
         res.status(409).json({ msg: 'Ocurrio un error, revise sus credenciales' })
       }

@@ -4,6 +4,12 @@ import Account from '../../../models/Account'
 
 import { hash } from 'bcrypt'
 
+export const config = {
+  api: {
+    externalResolver: true
+  }
+}
+
 export default async function login (req, res) {
   await dbConnect()
 

@@ -1,15 +1,12 @@
 import fetch from 'isomorphic-unfetch'
-import Router from 'next/router'
 
 export default async function myGet (url, ctx) {
   const resp = await fetch(url, {
-    headers: {
-      cookie: ctx.req ? { cookie: ctx.req.headers.cookie } : undefined
-    }
+    headers: { cookie: ctx }
   })
 
   if (resp.status === 401 && !ctx.req) {
-    Router.replace('login')
+    console.log('NO HAY NADA')
     return {}
   }
 

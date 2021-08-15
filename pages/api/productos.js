@@ -15,8 +15,14 @@ export default middlewares(async function handler (req, res) {
   switch (method) {
     case 'GET': {
       try {
-        const productos = await Producto.find({ userId: req.cookies._id, status: true })
-        res.status(200).json({ success: true, data: productos })
+        const productos = await Producto.find({
+          userId: req.cookies._id,
+          status: true
+        })
+        res.status(200).json({
+          success: true,
+          data: productos
+        })
       } catch (error) {
         res.status(400).json({ success: false })
       }
@@ -26,7 +32,10 @@ export default middlewares(async function handler (req, res) {
     case 'POST': {
       try {
         const producto = await Producto.create(req.body)
-        res.status(201).json({ success: true, data: producto })
+        res.status(201).json({
+          success: true,
+          data: producto
+        })
       } catch (error) {
         res.status(400).json({ success: false })
       }
@@ -36,7 +45,10 @@ export default middlewares(async function handler (req, res) {
     case 'DELETE': {
       try {
         const producto = await Producto.findOneAndUpdate({ _id: req.body.idProduct }, { $set: { status: false } })
-        res.status(201).json({ success: true, data: producto })
+        res.status(201).json({
+          success: true,
+          data: producto
+        })
       } catch (error) {
         res.status(400).json({ success: false })
       }

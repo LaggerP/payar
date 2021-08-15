@@ -26,9 +26,7 @@ const Productos = (props) => {
   const [message, setMessage] = useState('')
   const [products, setProducts] = useState(props.data)
 
-
   const openModal = () => !showModal ? setShowModal(true) : setShowModal(false)
-
   const handleChange = (e) => {
     const { name, value } = e.target
     setProductData({
@@ -38,7 +36,6 @@ const Productos = (props) => {
   }
 
   const newProduct = async (e) => {
-    setLoading(true)
     e.preventDefault()
     try {
       const res = await fetch('/api/productos', {
@@ -50,7 +47,6 @@ const Productos = (props) => {
         body: JSON.stringify(productData)
       })
       if (!res.ok) {
-        setLoading(false)
         throw new Error(res.status)
       } else {
         setShowModal(false)
