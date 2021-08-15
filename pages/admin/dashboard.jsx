@@ -37,7 +37,7 @@ const Dashboard = (props) => {
           <div className="flex justify-center my-10">
             <Link href="/admin/cobros">
               <button
-                className=" text-white bg-green-500 hover:bg-green-600 focus:outline-none rounded-md p-2 w-1/2 md:w-1/4 ">
+                className="text-white font-semibold bg-green-500 hover:bg-green-600 focus:outline-none rounded-md p-2 w-1/2 md:w-1/4 ">
                 <svg className="h-8 w-8 inline-flex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                      fill="currentColor">
                   <path
